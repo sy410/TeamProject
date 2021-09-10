@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -256,7 +258,53 @@ public class PmemberController {
 	} //pupdate
 	
 	
-	// ** Delete : 회원탈퇴
+	// ** Deletef
+	@RequestMapping(value = "/deletef")
+	public ModelAndView deletef(ModelAndView mv) {
+		mv.setViewName("pmember/deleteForm");
+		return mv;
+	} 
+	
+	// 패스워드 체크
+		@ResponseBody
+		@RequestMapping(value="/passCheck")
+		public int passCheck(PmemberVO vo, HttpServletRequest request){
+			int result = service.passCheck(vo);
+			String pw = vo.getPw();	
+			
+			// ** BCryptPasswordEncoder 적용
+			if (passwordEncoder.matches(pw, vo.getPw())) {
+				// 로그인 성공
+				request.getSession().setAttribute("loginID", vo.getId());
+				request.getSession().setAttribute("loginName", vo.getName());
+				request.getSession().setAttribute("loginPW", pw);
+						}
+			return result;
+		}
+	
+	
+	// 회원탈퇴
+		@RequestMapping(value="/pdelete")
+		public String pdelete(PmemberVO vo, HttpSession session, RedirectAttributes rttr) {
+			
+			// 세션에 있는 member를 가져와 member변수에 넣어줍니다.
+			PmemberVO pmember = (PmemberVO) session.getAttribute("pmember");
+			// 세션에있는 비밀번호
+			String sessionPass = pmember.getPw();
+			// vo로 들어오는 비밀번호
+			String voPass = vo.getPw();
+			
+			if(!(sessionPass.equals(voPass))) {
+				rttr.addFlashAttribute("msg", false);
+				return "redirect:/pmember/deleteForm";
+			}
+			service.delete(vo);
+			session.invalidate();
+			return "redirect:/home";
+		}
+
+		
+/* // ** Delete : 회원탈퇴
 	@RequestMapping(value = "/pdelete")
 	public ModelAndView pdelete(HttpServletRequest request, ModelAndView mv, PmemberVO vo, RedirectAttributes rttr) {
 		
@@ -282,6 +330,6 @@ public class PmemberController {
 		mv.setViewName("pmember/loginForm");
 		}
 		return mv;
-	} //pdelete
-	
+	} //pdelete */
+
 } // class

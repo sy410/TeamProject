@@ -14,6 +14,14 @@ public class PmemberServicelmpl implements PmemberService {
 	@Autowired
 	PmemberDAO dao;
 	
+
+	@Override
+	public int passCheck(PmemberVO vo) {
+		int result = dao.passCheck(vo);
+		return result;
+	}
+	
+	
 	// ID 중복확인
 	//@Override
 	//public String idCheck(String id) {

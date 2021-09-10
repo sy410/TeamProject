@@ -7,6 +7,11 @@ import vo.PmemberVO;
 
 public interface PmemberService {
 
+	
+	int passCheck(PmemberVO vo);
+	
+	
+	
 	// ID 중복확인
 	// public String idCheck(String id);
 	

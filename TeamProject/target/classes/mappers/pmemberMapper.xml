@@ -3,6 +3,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="one.mapper.PmemberMapper">
 
+
+	<select id="passCheck" resultType="int">
+		select count(*) from pmember where id=#{id} and pw=#{pw}
+	</select>
+
+
+
+
 	<!-- ID 중복 확인 
 	<select id="idCheck" resultType="vo.PmemberVO">
 		select count(*) from pmember where id=#{id}
@@ -89,7 +97,7 @@
 	</update>
 	
 	<delete id="delete">
-		delete from pmember where id=#{id}
+		delete from pmember where id=#{id} and pw=#{pw}
 	</delete>
 	
 </mapper>

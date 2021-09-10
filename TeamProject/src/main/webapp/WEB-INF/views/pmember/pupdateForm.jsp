@@ -51,7 +51,7 @@ function updateCh() {
 		<td><input type="text" name="addr" value="${Apple.addr}"></td>
 	</tr> --%>
 	<tr height="50"><td bgcolor="HoneyDew">주소</td>
-		<td><input type="text" id="postcode" placeholder="우편번호" size="10">
+		<td><input type="text" id="postcode" name="addr" placeholder="우편번호" size="10">
 			<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
 			<input type="text" id="addr" name="addr" placeholder="주소" size="45" value="${Apple.addr}"><br>
 			<input type="text" id="detailAddr" name="addr" placeholder="상세주소">

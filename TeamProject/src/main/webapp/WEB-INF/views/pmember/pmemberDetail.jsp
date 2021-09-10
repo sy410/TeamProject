@@ -9,6 +9,7 @@
 </head>
 <body>
 <h2>My Page</h2>
+<form method="post">
 <table border="1">
 	<tr height="50">
 		<td bgcolor="LightBlue">회원번호</td><td>${Apple.no}</td>
@@ -34,11 +35,11 @@
 	<tr height="50">
 		<td bgcolor="LightBlue">주소</td><td>${Apple.addr}</td>
 	</tr>
-</table>
+</table></form>
 <hr>
 <a href="pdetail?id=${Apple.id}&jcode=U">내정보수정</a>
 <%-- <a href="rdetail?rno=${Apple.rno}">예약 조회</a>&nbsp;&nbsp; --%>
-<a href="pdelete?id=${Apple.id}">회원탈퇴</a>
+<a href="deletef">회원탈퇴</a>
 <hr>
 <a href="home">HOME</a>
 </body>

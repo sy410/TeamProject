@@ -164,11 +164,11 @@ function idDupCheck() {
 <!-- 	<tr height="50"><td>주소</td>	
 		<td><input type="text" name="addr" id="addr"><br> -->
 	<tr height="50"><td>주소</td>
-		<td><input type="text" id="postcode" placeholder="우편번호" size="10">
+		<td><input type="text" id="postcode" name="addr" placeholder="우편번호" size="10">
 			<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
 			<input type="text" id="addr" name="addr" placeholder="주소" size="45"><br>
-			<input type="text" id="detailAddr" name="addr" placeholder="상세주소">
-			<input type="text" id="extraAddr" placeholder="참고항목">
+			<input type="hidden" id="detailAddr" name="addr" placeholder="상세주소">
+			<input type="hidden" id="extraAddr" name="addr" placeholder="참고항목">
 	<script>
       function execDaumPostcode() {
         new daum.Postcode({
@@ -203,16 +203,14 @@ function idDupCheck() {
                         extraAddr = ' (' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("extraAddr").value = extraAddr;
-                
+                    document.getElementById("extraAddr").value = extraAddr;                
                 } else {
                     document.getElementById("extraAddr").value = '';
                 }
-
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('postcode').value = data.zonecode;
                 document.getElementById("addr").value = addr;
-                // 커서를 상세주소 필드로 이동한다.
+                
                 document.getElementById("detailAddr").focus();
           		  }
         	}).open();
