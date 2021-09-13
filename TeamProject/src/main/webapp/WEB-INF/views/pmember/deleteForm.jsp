@@ -59,8 +59,5 @@ $(document).ready(function(){
 </form>
 <button class="btn" type="button" id="submit">회원탈퇴</button>
 <button class="cencle" type="button">취소</button>
-			<c:if test="${msg == false}">
-					비밀번호가 맞지 않습니다.
-				</c:if>
 </body>
 </html>
