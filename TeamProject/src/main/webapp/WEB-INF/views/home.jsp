@@ -12,7 +12,6 @@
 <c:if test="${message != null}">
   ${message}
 </c:if><br>
-<div id="resultArea"></div>
 <hr>
 <c:if test="${loginID == null}">
 	<a href="loginf">로그인</a>&nbsp;&nbsp;
