@@ -12,7 +12,6 @@
 <c:if test="${message != null}">
   ${message}
 </c:if><br>
-<img src="resources/image/phello.gif" width="300" height="200">
 <div id="resultArea"></div>
 <hr>
 <c:if test="${loginID == null}">
