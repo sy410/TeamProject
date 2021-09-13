@@ -133,6 +133,32 @@ function checkId() {
             }
         });
     }
+	 
+	 function addHypen(obj) { 
+		var number = obj.value.replace(/[^0-9]/g, ""); 
+		var phone = "";
+	
+		if(number.length < 4) { 
+			return number; 
+		} else if(number.length < 7) { 
+			phone += number.substr(0, 3); 
+			phone += "-"; 
+			phone += number.substr(3); 
+		} else if(number.length < 11) { 
+			phone += number.substr(0, 3);
+			phone += "-"; 
+			phone += number.substr(3, 3); 
+			phone += "-"; 
+			phone += number.substr(6); 
+		} else { 
+			phone += number.substr(0, 3); 
+			phone += "-"; 
+			phone += number.substr(3, 4); 
+			phone += "-"; 
+			phone += number.substr(7); 
+		} obj.value = phone; 
+	 } 
+	 
 </script>
 	<style>
 		h1 { text-align: center; }
@@ -165,7 +191,7 @@ function checkId() {
 			<span id="bMessage" class="eMessage"></span></td>
 	</tr>
 	<tr height="50"><td><b>*</b> 연락처</td>
-		<td> <input type="tel" name="tel" id="tel" placeholder="하이픈(-) 포함 입력하세요." required><br>
+		<td> <input type="tel" name="tel" id="tel" onKeyup="addHypen(this)" placeholder="하이픈(-) 포함 입력하세요." required><br>
 			 <span id="tMessage" class="eMessage"></span></td>
 		</tr>
 	<tr height="50"><td><b>*</b> 이메일</td>
