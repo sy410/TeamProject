@@ -25,9 +25,6 @@ function updateCh() {
 
 	<tr height="50"><td bgcolor="HoneyDew">회원번호</td>
 		<td><input type="text" name="no" size="20" value="${Apple.no}" readonly></td>
-		<!-- ** input Tag 입력 막기 
-				=> disabled :  서버로 전송 안됨 
-				=> readonly :  서버로 전송 됨   -->
 	</tr>
 	<tr height="50"><td bgcolor="HoneyDew">아이디</td>
 		<td><input type="text" name="id" value="${Apple.id}" readonly></td>
