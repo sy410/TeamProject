@@ -7,18 +7,26 @@ import vo.PmemberVO;
 
 public interface PmemberService {
 
+
+
 	
+	
+	
+	
+	// ** ID 중복확인
+	public int idCheck(PmemberVO vo);
+	
+	
+	// ** 패스워드 확인
 	int passCheck(PmemberVO vo);
 	
 	
-	
-	// ID 중복확인
-	// public String idCheck(String id);
 	
 	// ** ID 찾기
 	PmemberVO pFindId(PmemberVO vo);
 	// ** Password 찾기
 	PmemberVO pFindPw(PmemberVO vo);
+	
 	
 	// **SearchPageList
 	public int searchRowsCount(SearchCriteria cri);

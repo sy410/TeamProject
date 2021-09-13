@@ -8,17 +8,24 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import service.PmemberService;
+
 @Controller
 public class HomeController {
+	//@Autowired
+	//PmemberService service;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -79,4 +86,13 @@ public class HomeController {
 		return mv;
 	} // bcrypt
 	
+		//@RequestMapping(value = "/idCheck")
+	   // @ResponseBody
+	    //public int idCheck(@RequestParam("id") String id){
+	    //    logger.info("userIdCheck 진입");
+	    //    logger.info("전달받은 id:"+id);
+	     //   int result = service.idCheck(id);
+	    //   logger.info("확인 결과:"+result);
+	    //    return result;
+	   // }
 }

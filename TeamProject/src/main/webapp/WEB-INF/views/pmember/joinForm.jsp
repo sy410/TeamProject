@@ -100,20 +100,39 @@ function inCheck() {
 } //inCheck
 
 // ** ID 중복 확인하기
-function idDupCheck() {
-	if (iCheck == false) {
-		iCheck = idCheck();
-	} else {
-		// => 서버로 입력값을 보내어 중복확인, 결과처리
-		// => window.open(....)
-		//	  url 요청을 서버로 전달(request)하고, 그 결과(response)를 Open 해줌
-		var url="idCheck?id="+$('#id').val();
-		window.open(url,"_blank",
-				"toolbar=no,menubar=yes,scrollbars=yes,resizable=yes,width=500,height=400");
-	}
-} //idDupCheck 
-
-
+//아이디 체크하여 가입버튼 비활성화, 중복확인.
+function checkId() {
+	var id = $('#id').val();
+	$.ajax({
+		 url: "idCheck",
+         data: {
+                id : id
+                },
+         success : function(data) {
+				  if(id=="" && data=='0') {
+                    $(".joinbtn").prop("disabled", true);
+                    iCheck = 0;
+                  	} else if (data == '0') {
+                    	$(".trueM").html('사용가능한 아이디입니다.')
+                    		.css ({ fontSize: "small",
+            						fontWeight: "bold",
+            						color: "Blue" });
+                   		iCheck = 1;
+                  	  if(iCheck==1 && pCheck == 1) {
+                        $(".joinbtn").prop("disabled", false);
+                        signupCheck();
+                   	} 
+                } else if (data == '1') {
+                    $(".joinbtn").prop("disabled", true);
+                    $(".falseM").html('이미 사용중인 아이디입니다.')
+                    	.css ({	fontSize: "small",
+            					fontWeight: "bold",
+            					color: "Red" });
+                    iCheck = 0;
+                } 
+            }
+        });
+    }
 </script>
 	<style>
 		h1 { text-align: center; }
@@ -125,32 +144,32 @@ function idDupCheck() {
 <form action="join" method="post" id="myForm">
 <table>
 	<tr height="50"><td><b>*</b> 아이디</td>
-		<td><input type="text" name="id" id="id" required>&nbsp;&nbsp;
-			<input type="button" value="ID중복확인" id="idDup" onclick="idDupCheck()"><br>
+		<td><input type="text" name="id" id="id" oninput="checkId()" required>
+			<span id="checkM" class="trueM falseM"></span><br>
 			<span id="iMessage" class="eMessage"></span></td>
 	</tr>	
 	<tr height="50"><td><b>*</b> 비밀번호</td>
-		<td><input type="password" name="pw" id="pw"><br>
+		<td><input type="password" name="pw" id="pw" required><br>
 			<span id="pMessage" class="eMessage"></span></td>
 	</tr>
 	<tr height="50"><td><b>*</b> 비밀번호 재확인</td>
-		<td><input type="password" name="checkpw" id="checkpw"><br>
+		<td><input type="password" name="checkpw" id="checkpw" required><br>
 			<span id="cMessage" class="eMessage"></span></td>
 	</tr>	
 	<tr height="50"><td><b>*</b> 이름</td>
-		<td><input type="text" name="name" id="name"><br>
+		<td><input type="text" name="name" id="name" required><br>
 			<span id="nMessage" class="eMessage"></span></td>
 	</tr>	
 	<tr height="50"><td><b>*</b> 생년월일</td>
-		<td><input type="date" name="birth" id="birth"><br>
+		<td><input type="date" name="birth" id="birth" required><br>
 			<span id="bMessage" class="eMessage"></span></td>
 	</tr>
 	<tr height="50"><td><b>*</b> 연락처</td>
-		<td> <input type="tel" name="tel" id="tel" placeholder="하이픈(-) 포함 입력하세요."><br>
+		<td> <input type="tel" name="tel" id="tel" placeholder="하이픈(-) 포함 입력하세요." required><br>
 			 <span id="tMessage" class="eMessage"></span></td>
 		</tr>
 	<tr height="50"><td><b>*</b> 이메일</td>
-	<td><input type="email" name="email" id="email"><br>
+	<td><input type="email" name="email" id="email" required><br>
 			<span id="emMessage" class="eMessage"></span></td>
 	</tr>
 			<!-- <select name="email2">
@@ -215,16 +234,13 @@ function idDupCheck() {
           		  }
         	}).open();
    		 }
-		</script>
+</script>
 		</td>
 	</tr>
 </table><br><hr><br>	
-		<input type="submit" value="가입" onclick="return inCheck()" disabled id="submit">&nbsp;&nbsp;
+		<input type="submit" value="회원가입" class="joinbtn" disabled="disabled">
 		<input type="reset" value="취소"><br>
 </form>	
-<c:if test="${message != null}">
-	<br>${message}<br><br>	
-</c:if><br>	
 <a href="home">HOME</a>
 
 <!--  부트스트랩 js 사용 -->

@@ -6,13 +6,15 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,8 +23,7 @@ import criTest.SearchCriteria;
 import service.PmemberService;
 import vo.PmemberVO;
 
-
-@RestController
+@Controller
 public class PmemberController {
 	
 	@Autowired
@@ -30,27 +31,26 @@ public class PmemberController {
 	@Autowired 
 	PasswordEncoder passwordEncoder;
 
-
-	// ** ID 중복확인
-	@RequestMapping(value = "/idCheck")
-	public ModelAndView idCheck(ModelAndView mv, PmemberVO vo) {
-		// => 전달된 ID의 존재여부 확인
-		mv.addObject("newID", vo.getId());
-		if (service.selectOne(vo) != null) {
-		    mv.addObject("idUse", "F"); // 사용불가
-		} else  mv.addObject("idUse", "T"); // 사용가능
-		mv.setViewName("pmember/idDupCheck");
-		return mv;
-	} //idCheck 
-
+	
+	
+	
+	
+	
+	
+	 // ** ID 중복확인
+	@ResponseBody
+	@RequestMapping(value = "idCheck")
+    public int idCheck(PmemberVO vo, Model model) {
+        return service.idCheck(vo);
+    }//
+	
 	
 	 // ID_form
 	 @RequestMapping(value = "/findIdf") 
 	 public ModelAndView findIdf (ModelAndView mv) { 
 		 mv.setViewName("pmember/findIdForm"); 
 		 return mv; 
-	 } //findIdf
-	  
+	 }  
 	 // ** ID 찾기
 	 @RequestMapping(value = "/findId")
 	 public String pFindId(PmemberVO vo, Model model) {
@@ -70,12 +70,11 @@ public class PmemberController {
 	public ModelAndView findPwf (ModelAndView mv) { 
 		mv.setViewName("pmember/findPwForm"); 
 		return mv; 
-	 } //findIdf
-	  
+	 }
 	// ** Password 찾기
 	@RequestMapping(value = "/findPw")
 	public String pFindPw (PmemberVO vo, Model model) {
-		
+				
 		PmemberVO pwmember = service.pFindPw(vo);
 		if(pwmember == null) { 
 			model.addAttribute("check", 1);
@@ -85,6 +84,7 @@ public class PmemberController {
 		}			
 		return "pmember/pmemberPw";
 	}
+	
 	
 	
 	
@@ -123,7 +123,7 @@ public class PmemberController {
 		// => BCryptPasswordEncoder 적용
 		//    encode(rawData) -> digest 생성 & vo 에 set  
 		vo.setPw(passwordEncoder.encode(vo.getPw()));
-				
+		
 		if (service.insert(vo) > 0) {
 			// 회원가입 성공
 			rttr.addFlashAttribute("message", "회원가입 성공! 로그인 후 이용하세요.");
@@ -133,7 +133,7 @@ public class PmemberController {
 			rttr.addFlashAttribute("message", "회원가입 실패! 다시 시도 하세요.");
 			mv.setViewName("pmember/joinForm");
 		}
-		return mv;
+		return mv; 
 	} // join
 			
 			
@@ -151,7 +151,7 @@ public class PmemberController {
 		String pw = vo.getPw();	
 		vo = service.selectOne(vo);
 		if(vo != null) {
-				
+		
 			// ** BCryptPasswordEncoder 적용
 			if (passwordEncoder.matches(pw, vo.getPw())) {
 				// 로그인 성공
@@ -265,25 +265,21 @@ public class PmemberController {
 		return mv;
 	} 
 	
-	// 패스워드 체크
+		 /* // 패스워드 체크
 		@ResponseBody
 		@RequestMapping(value="/passCheck")
-		public int passCheck(PmemberVO vo, HttpServletRequest request){
-			int result = service.passCheck(vo);
-			String pw = vo.getPw();	
+		public int passCheck(PmemberVO vo, HttpServletRequest request, ModelAndView mv){
 			
+			//int result = service.passCheck(vo);
+		
+			String pw = vo.getPw();				
 			// ** BCryptPasswordEncoder 적용
-			if (passwordEncoder.matches(pw, vo.getPw())) {
-				// 로그인 성공
-				request.getSession().setAttribute("loginID", vo.getId());
-				request.getSession().setAttribute("loginName", vo.getName());
-				request.getSession().setAttribute("loginPW", pw);
-						}
+			int result = passwordEncoder.matches(pw, vo.getPw());
+			
 			return result;
-		}
+		} */
 	
-	
-	// 회원탈퇴
+		// 회원탈퇴
 		@RequestMapping(value="/pdelete")
 		public String pdelete(PmemberVO vo, HttpSession session, RedirectAttributes rttr) {
 			

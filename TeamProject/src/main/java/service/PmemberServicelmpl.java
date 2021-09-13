@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,19 +16,24 @@ public class PmemberServicelmpl implements PmemberService {
 	PmemberDAO dao;
 	
 
+		
+	
+	
+	
+	
+	// ** ID 중복확인
+	@Override
+	public int idCheck(PmemberVO vo) {
+		return dao.idCheck(vo);
+	}
+	
+	
+	// ** 패스워드 확인
 	@Override
 	public int passCheck(PmemberVO vo) {
 		int result = dao.passCheck(vo);
 		return result;
 	}
-	
-	
-	// ID 중복확인
-	//@Override
-	//public String idCheck(String id) {
-	//	return dao.idCheck(id);
-	//}
-	
 	
 	
 	// ** ID 찾기

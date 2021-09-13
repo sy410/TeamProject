@@ -17,20 +17,26 @@ public class PmemberDAO {
 	private static final String NS = "one.mapper.PmemberMapper.";
 	
 	
+
 	
+	
+	
+	
+	
+	// ** ID 중복 확인
+	public int idCheck(PmemberVO vo) {
+		return sqlSession.selectOne(NS+"idCheck", vo);
+	}
+	
+	
+	
+	// ** 패스워드 확인
 	public int passCheck(PmemberVO vo) {
 		int result = sqlSession.selectOne(NS+"passCheck", vo);
 		return result;
 	}
 	
-	
-	
-	// ** ID 중복 확인
-	//public String idCheck(String id) {
-	//	return sqlSession.selectOne(NS+"idCheck", id);
-	//}
 
-	
 	
 	// ** ID 찾기 ------------------------------
 	public PmemberVO pFindId(PmemberVO vo) {
