@@ -67,8 +67,8 @@
 	</select>
 	
  	<select id="searchList" resultType="vo.PmemberVO">
-		select no,id,pw,name,birth,tel,email,addr from
-		(select p.* , ROW_NUMBER() OVER(order by no) rnum from pmember p where id !='admin' 
+		select id,pw,name,birth,tel,email,addr from
+		(select p.* , ROW_NUMBER() OVER(order by id) rnum from pmember p where id !='admin' 
 		<include refid="search"></include>
 		where rnum between #{sno} and #{eno} 
 	</select>
@@ -84,11 +84,8 @@
 	
 
 	<insert id="insert">
-	<selectKey keyProperty="no" resultType="int" order="BEFORE">
-		select nvl(max(no),0)+1 from pmember
-	</selectKey>
 		insert into pmember values(
-		#{no}, #{id},#{pw},#{name},#{birth},#{tel},#{email},#{addr, jdbcType=VARCHAR})
+		#{id},#{pw},#{name},#{birth},#{tel},#{email},#{addr, jdbcType=VARCHAR})
 	</insert>
 	
 	
