@@ -23,9 +23,6 @@ function updateCh() {
 <table>
 <form action="pupdate" method="post">
 
-	<tr height="50"><td bgcolor="HoneyDew">회원번호</td>
-		<td><input type="text" name="no" size="20" value="${Apple.no}" readonly></td>
-	</tr>
 	<tr height="50"><td bgcolor="HoneyDew">아이디</td>
 		<td><input type="text" name="id" value="${Apple.id}" readonly></td>
 	</tr>
