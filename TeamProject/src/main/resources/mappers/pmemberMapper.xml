@@ -37,9 +37,6 @@
      <bind name="keyVal" value="'%'+keyword+'%'"/>
   </if>   
   <choose>
-     <when test="searchType =='o'.toString()">
-        and no         Like #{keyVal} )
-     </when>
      <when test="searchType =='i'.toString()">
         and id         Like #{keyVal} )
      </when>
