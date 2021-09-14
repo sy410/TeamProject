@@ -18,12 +18,11 @@
 <hr>
 <table border="1" width=1100 style="margin-left: auto; margin-right: auto;">
 <tr height="35" bgcolor="Beige">
-	<th>No</th><th>ID</th><th>Name</th><th>Birth</th>
+	<th>ID</th><th>Name</th><th>Birth</th>
 	<th>Tel</th><th>Email</th><th>Addr</th>
 </tr>
 <c:forEach var="list" items="${Banana}">
 <tr height="30" align="center">
-	<td>${list.no}</td>
 	<td><a href="pdetail?id=${list.id}">${list.id}</a></td>
 	<td>${list.name}</td><td>${list.birth}</td>
 	<td>${list.tel}</td><td>${list.email}</td><td>${list.addr}</td>
