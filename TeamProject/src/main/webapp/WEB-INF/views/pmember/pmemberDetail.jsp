@@ -12,9 +12,6 @@
 <form method="post">
 <table border="1">
 	<tr height="50">
-		<td bgcolor="LightBlue">회원번호</td><td>${Apple.no}</td>
-	</tr>
-	<tr height="50">
 		<td bgcolor="LightBlue">아이디</td><td>${Apple.id}</td>
 	</tr>
 	<tr height="50">
