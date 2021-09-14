@@ -37,7 +37,6 @@ $(function() {
 <div id="searchBar">
 	<select name="searchType" id="searchType">
 		<option value="n" <c:out value="${pageMaker.cri.searchType == null ? 'selected' : ''}"/> >----</option>
-		<option value="o" <c:out value="${pageMaker.cri.searchType == 'o' ? 'selected' : ''}"/> >NO</option>
 		<option value="i" <c:out value="${pageMaker.cri.searchType == 'i' ? 'selected' : ''}"/> >ID</option>
 		<option value="m" <c:out value="${pageMaker.cri.searchType == 'm' ? 'selected' : ''}"/> >Name</option>
 		<option value="b" <c:out value="${pageMaker.cri.searchType == 'b' ? 'selected' : ''}"/> >Birth</option>
@@ -51,12 +50,11 @@ $(function() {
 <br><hr>
 <table border="1" width=1100 style="margin-left: auto; margin-right: auto;">
 <tr height="35" bgcolor="Beige">
-	<th>No</th><th>ID</th><th>Name</th><th>Birth</th>
+	<th>ID</th><th>Name</th><th>Birth</th>
 	<th>Tel</th><th>Email</th><th>Addr</th>
 </tr>
 <c:forEach var="list" items="${Banana}">
-<tr height="30" align="center">
-	<td>${list.no}</td>
+<tr height="30" align="center">	
 	<td><a href="pdetail?id=${list.id}">${list.id}</a></td>
 	<td>${list.name}</td><td>${list.birth}</td>
 	<td>${list.tel}</td><td>${list.email}</td><td>${list.addr}</td>
