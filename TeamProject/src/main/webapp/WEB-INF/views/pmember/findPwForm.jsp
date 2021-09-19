@@ -37,23 +37,38 @@ function inCheck() {
 		return false;
 } //inCheck 
 </script>
-
+<style>
+	table {
+    margin-left:auto; 
+    margin-right:auto;
+	}
+</style>
 </head>
-<body>
+<body style="text-align:center;">
 <h1>패스워드 찾기</h1>
-<form action="findPw" method="post">
+<form action="findPw" method="post" name="findform">
 <table>
-	<tr height="50">
-		<td><input type="text" id="id" name="id" placeholder="아이디"><br>
+	<tr height="50"><td>아이디</td>
+		<td><input type="text" id="id" name="id"><br>
 		<span id="iMessage" class="eMessage"></span></td>
 	</tr>
-	<tr height="50">
-		<td><input type="text" id="name" name="name" placeholder="이름"><br>
+	<tr height="50"><td>이름</td>
+		<td><input type="text" id="name" name="name"><br>
 		<span id="nMessage" class="eMessage"></span></td>
 	</tr></table>
 	<br>
-		<input type="submit" value="찾기" id="pwBtn" onclick="return inCheck()">&nbsp;&nbsp;
-		<input type="reset" value="취소" onclick="history.go(-1);">
-</form>
+		<input type="submit" value="찾기" onclick="return inCheck()">&nbsp;&nbsp;
+		<input type="reset" value="취소" onclick="history.go(-1)">
+		
+	<!-- 정보가 일치하지 않을 때-->
+	<c:if test="${check == 1}">
+		<script>
+			$('id').val="";
+			$('name').val="";
+			alert("일치하는 정보가 없습니다.");
+		</script>
+	</c:if>		
+</form><br>
+<a href="home">HOME</a>
 </body>
 </html>
