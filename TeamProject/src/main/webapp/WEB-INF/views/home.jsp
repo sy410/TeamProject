@@ -23,5 +23,10 @@
 	<a href="plist">회원관리</a>&nbsp;
 	<a href="pcplist">회원관리_서치</a>&nbsp;
 </c:if>
+	
+<!-- 관리자일때만 메뉴확인가능 -->
+<c:if test="${loginID == 'admin'}">
+	<a href="pcplist">회원목록</a>
+</c:if>	
 </body>
 </html>
