@@ -124,8 +124,7 @@ function checkId() {
             }
         });
     }
-	 
-	 function addHypen(obj) { 
+	  function addHypen(obj) { 
 		var number = obj.value.replace(/[^0-9]/g, ""); 
 		var phone = "";
 	
