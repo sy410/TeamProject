@@ -34,7 +34,12 @@ public class PmemberController {
 	
 	
 	
-	
+	// ** Accountf
+	@RequestMapping(value ="/paccountf")
+	public ModelAndView paccountf (ModelAndView mv) {
+	mv.setViewName("pmember/pAccountForm");
+	return mv;
+	}
 	
 	
 	 // ** ID 중복확인
