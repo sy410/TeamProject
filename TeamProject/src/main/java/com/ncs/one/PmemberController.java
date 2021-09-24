@@ -70,7 +70,7 @@ public class PmemberController {
 		return "pmember/pmemberId";
 	}
 	 
-	// Password_form
+	// ** Password_form
 	@RequestMapping(value = "/findPwf") 
 	public ModelAndView findPwf (ModelAndView mv) { 
 		mv.setViewName("pmember/findPwForm"); 
@@ -90,7 +90,15 @@ public class PmemberController {
 		return "pmember/pmemberPw";
 	}
 	
-	
+	// ** Password 수정
+	@RequestMapping(value ="/updatePw")
+	public String updatePw(HttpSession session, PmemberVO vo, RedirectAttributes ra) throws Exception {
+		vo.setPw(passwordEncoder.encode(vo.getPw()));
+		service.updatePw(vo);
+		session.invalidate();
+		ra.addFlashAttribute("Apple", "updateOK");
+		return ("pmember/loginForm");
+	}
 	
 	
     // ** Member SearchCriteria PageList
