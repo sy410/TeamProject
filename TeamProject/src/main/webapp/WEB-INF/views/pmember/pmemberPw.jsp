@@ -51,9 +51,8 @@ function inCheck() {
 비밀번호를 변경해주세요.<br>
 <form action="updatePw" method="post">
 <table>
-	<tr height="50"><td>아이디</td>	
-		<td><input type="text" id="id" name="id" value="${Apple.id}"><br>
-			<span id="iMessage" class="eMessage"></span></td>
+	<tr>
+		<td><input type="hidden" id="id" name="id" value="${Apple.id}"><br>
 	</tr>
 			
 	<tr height="50"><td>새 비밀번호</td>	
