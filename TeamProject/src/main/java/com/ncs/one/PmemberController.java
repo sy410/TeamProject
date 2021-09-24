@@ -85,7 +85,7 @@ public class PmemberController {
 			model.addAttribute("check", 1);
 		} else { 
 			model.addAttribute("check", 0);
-			model.addAttribute("pw", pwmember.getPw());
+			model.addAttribute("Apple", pwmember.getId());
 		}			
 		return "pmember/pmemberPw";
 	}
@@ -95,8 +95,6 @@ public class PmemberController {
 	public String updatePw(HttpSession session, PmemberVO vo, RedirectAttributes ra) throws Exception {
 		vo.setPw(passwordEncoder.encode(vo.getPw()));
 		service.updatePw(vo);
-		session.invalidate();
-		ra.addFlashAttribute("Apple", "updateOK");
 		return ("pmember/loginForm");
 	}
 	
