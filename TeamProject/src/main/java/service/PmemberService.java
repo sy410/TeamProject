@@ -8,11 +8,6 @@ import vo.PmemberVO;
 public interface PmemberService {
 
 
-
-	
-	
-	
-	
 	// ** ID 중복확인
 	public int idCheck(PmemberVO vo);
 	
@@ -26,7 +21,8 @@ public interface PmemberService {
 	PmemberVO pFindId(PmemberVO vo);
 	// ** Password 찾기
 	PmemberVO pFindPw(PmemberVO vo);
-	
+	// ** Password 수정
+	public void updatePw(PmemberVO vo);
 	
 	// **SearchPageList
 	public int searchRowsCount(SearchCriteria cri);
