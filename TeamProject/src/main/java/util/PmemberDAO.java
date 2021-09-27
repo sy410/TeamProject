@@ -42,10 +42,13 @@ public class PmemberDAO {
 	public PmemberVO pFindId(PmemberVO vo) {
 		return sqlSession.selectOne(NS+"pFindId", vo);
 	}
-	
 	// ** Password 찾기
 	public PmemberVO pFindPw(PmemberVO vo) {
 		return sqlSession.selectOne(NS+"pFindPw", vo);
+	}
+	// ** password 재설정
+	public void updatePw(PmemberVO vo){
+		sqlSession.update(NS+"updatePw", vo);
 	} // --------------------------------------
 	
 	
