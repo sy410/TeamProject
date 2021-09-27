@@ -3,24 +3,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="one.mapper.PmemberMapper">
 
-
-
-
-
-
-
-
 	<!-- ID 중복 확인 -->
 	<select id="idCheck" parameterType="String" resultType="int">
 		select count(id) from pmember where id=#{id}
 	</select>
-	
-	<!-- 패스워드 확인 -->	
-	<select id="passCheck" resultType="int">
-		select count(*) from pmember where id=#{id} and pw=#{pw}
-	</select>
-	
-	
 	
 	<!-- ID 찾기 -->
 	<select id="pFindId" resultType="vo.PmemberVO"> 
@@ -28,8 +14,12 @@
 	</select> 
 	<!-- Password 찾기 -->
 	<select id="pFindPw" resultType="vo.PmemberVO"> 
-		select pw from pmember where id=#{id} and name=#{name}
+		select pw from pmember where id=#{id} and name=#{name} and tel=#{tel}
 	</select> 
+	<!-- Password 수정 -->
+	<update id="updatePw">
+		update pmember set pw=#{pw} where id=#{id}
+	</update>
 	
 	
 <sql id="search">
@@ -73,21 +63,15 @@
 		where rnum between #{sno} and #{eno} 
 	</select>
 	
-	<select id="selectList" resultType="vo.PmemberVO">
-		select * from pmember where id != 'admin' order by no
-	</select>
-	
 	<select id="selectOne" resultType="vo.PmemberVO">
 		select * from pmember where id = #{id}
 	</select>
 	
 	
-
 	<insert id="insert">
 		insert into pmember values(
-		#{id},#{pw},#{name},#{birth},#{tel},#{email},#{addr, jdbcType=VARCHAR})
+			#{id},#{pw},#{name},#{birth},#{tel},#{email},#{addr, jdbcType=VARCHAR} )
 	</insert>
-	
 	
 	<update id="update">
 		update pmember 
@@ -97,7 +81,7 @@
 	</update>
 	
 	<delete id="delete">
-		delete from pmember where id=#{id} and pw=#{pw}
+		delete from pmember where id=#{id}
 	</delete>
 	
 </mapper>
