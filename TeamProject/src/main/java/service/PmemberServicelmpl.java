@@ -46,7 +46,12 @@ public class PmemberServicelmpl implements PmemberService {
 	public PmemberVO pFindPw(PmemberVO vo) {
 		return dao.pFindPw(vo);
 	}
-
+	// ** password 재설정
+	@Override
+	 public void updatePw(PmemberVO vo){
+		dao.updatePw(vo);
+	}
+	
 	// ** SearchPageList 
 	@Override
 	public int searchRowsCount(SearchCriteria cri) {
