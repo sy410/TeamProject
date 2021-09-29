@@ -35,30 +35,6 @@
 <script src="resources/myLib/inCheck.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-/* //1) 전역변수 정의
-var pCheck = false;
-
-//2) 개별컬럼의 무결성 점검
-$(function (){
-	$('#pw').focus();
-
-	$('#pw').focusout(function() {
-			pCheck=pwCheck();
-	}); //pw_focusout
-
-}); //ready
-
-// 3) submit 처리
-function inCheck() {
-	if (pCheck == false) {
-		$('#pMessage').html(' 패스워드를 입력 하세요.');
-	}
-	if (pCheck) {
-		alert('회원정보가 정상적으로 수정되었습니다.');
-		return true;
-	} else
-		return false;
-} //inCheck */
 
 function updateCh() {
 	alert('회원정보가 정상적으로 수정되었습니다.');
@@ -243,23 +219,23 @@ function addHypen(obj) {
                     </div>
                    <div class="mb-4 col-md-6">
                       <label class="form-label" for="pw">비밀번호</label>
-                      <input class="form-control" type="password" name="pw" id="pw" value="${Apple.pw}">
+                      <input class="form-control" type="password" name="pw" id="pw" value="${Apple.pw}" required>
                     </div>  
                     <div class="mb-4 col-md-6">
                       <label class="form-label" for="name">이름</label>
-                      <input class="form-control" type="text" name="name" id="name" value="${Apple.name}">
+                      <input class="form-control" type="text" name="name" id="name" value="${Apple.name}" required>
                     </div>                               
                     <div class="mb-4 col-md-6">
                       <label class="form-label" for="birth">생년월일</label>
-                      <input class="form-control" type="date" name="birth" id="birth" value="${Apple.birth}">
+                      <input class="form-control" type="date" name="birth" id="birth" value="${Apple.birth}" required>
                     </div>
                     <div class="mb-4 col-md-6">
                       <label class="form-label" for="email">이메일</label>
-                      <input class="form-control" type="email" name="email" id="email" value="${Apple.email}">
+                      <input class="form-control" type="email" name="email" id="email" value="${Apple.email}" required>
                     </div>
                     <div class="mb-4 col-md-6">
                       <label class="form-label" for="tel">연락처</label>
-                      <input class="form-control" type="tel" name="tel" id="tel" value="${Apple.tel}" onKeyup = "addHypen(this)" maxlength="13" placeholder="하이픈(-) 없이 입력하세요.">
+                      <input class="form-control" type="tel" name="tel" id="tel" value="${Apple.tel}" onKeyup = "addHypen(this)" maxlength="13" placeholder="하이픈(-) 없이 입력하세요." required>
                     </div>
                     <div class="mb-4 col-md-12">
                       <label class="form-label" for="addr">주소</label>
