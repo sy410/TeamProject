@@ -56,10 +56,10 @@ $(function (){
 // 3) submit 처리
 function inCheck() {
 	if (iCheck == false) {
-		$('#iMessage').html(' 아이디를 입력 하세요.');
+		$('#iMessage').html(' 아이디를 입력하세요.');
 	}
 	if (pCheck == false) {
-		$('#pMessage').html(' 패스워드를 입력 하세요.');
+		$('#pMessage').html(' 패스워드를 입력하세요.');
 	}
 	if (iCheck && pCheck) {
 		return true;
@@ -104,14 +104,7 @@ function inCheck() {
         <button class="btn btn btn-outline-muted btn-social"><i class="fa-2x fa-google fab btn-social-icon"> </i>Connect <span class="d-none d-sm-inline">with Google</span></button>
     </div> -->
     <hr class="my-4">
-    <div class="col">
-     <div class="row">
-	   <span class="col-auto"><a class="form-text small text-primary" href="findIdf"> ID 찾기</a></span>
- 	   <span class="col-auto"><a class="form-text small text-primary" href="findPwf"> PW 찾기</a></span>
- 	 </div>
- 	</div>  
-    <hr class="my-4">
-    <p class="text-center"><small class="text-muted text-center">아직 회원이 아니신가요?   <a href="joinf">Sign Up</a></small></p>
+     <p class="text-center"><small class="text-muted text-center"><a href="findIdf"> 아이디찾기</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="findPwf"> 비밀번호찾기</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="joinf"> 회원가입</a></small></p>
   </form>
   <c:if test="${message != null}">
  	 <script>
